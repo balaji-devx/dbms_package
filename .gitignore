@@ -1,0 +1,51 @@
+# --- Node packages ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Environment configuration ---
+.env
+.env.local
+.env.*.local
+
+# --- OS / Editor garbage ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE folders
+.vscode/
+.idea/
+
+# --- Logs ---
+logs/
+*.log
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# --- Build / Cache ---
+dist/
+build/
+cache/
+tmp/
+temp/
+
+# --- Coverage / testing ---
+coverage/
+
+# --- Mongo local data dumps ---
+dump/
+*.bson
+*.json
+
+# --- Uploads or generated files ---
+public/uploads/
+
+# --- Ignore sensitive backup files ---
+*.bak
+*.old
+*.swp
+*.swo

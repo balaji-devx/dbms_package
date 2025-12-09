@@ -1,0 +1,62 @@
+<h2>Persons</h2>
+
+<section class="form-section">
+  <h3>Add Person</h3>
+  <form action="/persons/add" method="post" class="form">
+    <label>
+      Name:
+      <input type="text" name="name" required />
+    </label>
+    <label>
+      Mobile:
+      <input type="text" name="mobile" required />
+    </label>
+    <label>
+      Type:
+      <select name="type" required>
+        <option value="">--Select--</option>
+        <option value="L">Lender</option>
+        <option value="B">Borrower</option>
+      </select>
+    </label>
+    <button type="submit" class="btn">Add Person</button>
+  </form>
+</section>
+
+<section>
+  <h3>Person List</h3>
+  {{#if persons.length}}
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Mobile</th>
+        <th>Type</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each persons}}
+      <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.mobile}}</td>
+        <td>{{this.typeLabel}}</td>
+        <td>
+          <a href="/persons/{{this._id}}/edit" class="btn small">Edit</a>
+          <form
+            action="/persons/{{this._id}}/delete"
+            method="post"
+            style="display:inline"
+            onsubmit="return confirm('Delete this person?');"
+          >
+            <button type="submit" class="btn small">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  <p>No persons added yet.</p>
+  {{/if}}
+</section>

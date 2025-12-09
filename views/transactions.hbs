@@ -1,0 +1,44 @@
+<h2>All Transactions</h2>
+
+{{#if txns.length}}
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Lender</th>
+      <th>Borrower</th>
+      <th>Borrow Date</th>
+      <th>Due Date</th>
+      <th>Return Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each txns}}
+    <tr>
+      <td>{{this.item_id.item_name}}</td>
+      <td>{{this.lender_id.name}}</td>
+      <td>{{this.borrower_id.name}}</td>
+      <td>{{this.borrow_date}}</td>
+      <td>{{this.due_date}}</td>
+      <td>
+        {{#if this.return_date}}
+          {{this.return_date}}
+        {{else}}
+          Not Returned
+        {{/if}}
+      </td>
+      <td>
+        {{#unless this.return_date}}
+        <form action="/transactions/{{this._id}}/return" method="post">
+          <button type="submit" class="btn small">Mark Returned</button>
+        </form>
+        {{/unless}}
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{else}}
+<p>No transactions found.</p>
+{{/if}}

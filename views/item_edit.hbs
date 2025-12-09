@@ -1,0 +1,14 @@
+<h2>Edit Item</h2>
+
+<form action="/items/{{item._id}}/edit" method="post" class="form">
+  <label>
+    Item Name:
+    <input type="text" name="item_name" value="{{item.item_name}}" required />
+  </label>
+  <label>
+    Category:
+    <input type="text" name="category" value="{{item.category}}" required />
+  </label>
+  <button type="submit" class="btn">Save Changes</button>
+  <a href="/items" class="btn">Cancel</a>
+</form>

@@ -1,0 +1,22 @@
+<h2>Edit Person</h2>
+
+<form action="/persons/{{person._id}}/edit" method="post" class="form">
+  <label>
+    Name:
+    <input type="text" name="name" value="{{person.name}}" required />
+  </label>
+  <label>
+    Mobile:
+    <input type="text" name="mobile" value="{{person.mobile}}" required />
+  </label>
+  <label>
+    Type:
+    <select name="type" required>
+      <option value="">--Select--</option>
+      <option value="L" {{#if person.isLender}}selected{{/if}}>Lender</option>
+      <option value="B" {{#if person.isBorrower}}selected{{/if}}>Borrower</option>
+    </select>
+  </label>
+  <button type="submit" class="btn">Save Changes</button>
+  <a href="/persons" class="btn">Cancel</a>
+</form>

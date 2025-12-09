@@ -1,0 +1,45 @@
+<h2>New Borrow Transaction</h2>
+
+<form action="/borrow/add" method="post" class="form wide-form">
+  <label>
+    Item:
+    <select name="item_id" required>
+      <option value="">--Select Item--</option>
+      {{#each items}}
+      <option value="{{this._id}}">{{this.item_name}} ({{this.category}})</option>
+      {{/each}}
+    </select>
+  </label>
+
+  <label>
+    Lender:
+    <select name="lender_id" required>
+      <option value="">--Select Lender--</option>
+      {{#each lenders}}
+      <option value="{{this._id}}">{{this.name}} ({{this.mobile}})</option>
+      {{/each}}
+    </select>
+  </label>
+
+  <label>
+    Borrower:
+    <select name="borrower_id" required>
+      <option value="">--Select Borrower--</option>
+      {{#each borrowers}}
+      <option value="{{this._id}}">{{this.name}} ({{this.mobile}})</option>
+      {{/each}}
+    </select>
+  </label>
+
+  <label>
+    Borrow Date:
+    <input type="date" name="borrow_date" required />
+  </label>
+
+  <label>
+    Due Date:
+    <input type="date" name="due_date" required />
+  </label>
+
+  <button type="submit" class="btn">Save Transaction</button>
+</form>
