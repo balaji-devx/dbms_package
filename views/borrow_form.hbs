@@ -1,12 +1,26 @@
 <h2>New Borrow Transaction</h2>
 
-<form action="/borrow/add" method="post" class="form wide-form">
+<form action="/borrow/add" method="post" class="form wide-form borrow-form">
+
+  {{#if errors}}
+  <div class="form-errors">
+    <ul>
+      {{#each errors}}
+      <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  {{/if}}
+
   <label>
     Item:
     <select name="item_id" required>
       <option value="">--Select Item--</option>
       {{#each items}}
-      <option value="{{this.item_id}}">{{this.item_name}} ({{this.category}})</option>
+      <option value="{{this.item_id}}"
+        {{#ifEquals ../formData.item_id this.item_id}}selected{{/ifEquals}}>
+        {{this.item_name}} ({{this.category}})
+      </option>
       {{/each}}
     </select>
   </label>
@@ -16,7 +30,10 @@
     <select name="lender_id" required>
       <option value="">--Select Lender--</option>
       {{#each lenders}}
-      <option value="{{this.person_id}}">{{this.name}} ({{this.mobile}})</option>
+      <option value="{{this.person_id}}"
+        {{#ifEquals ../formData.lender_id this.person_id}}selected{{/ifEquals}}>
+        {{this.name}} ({{this.mobile}})
+      </option>
       {{/each}}
     </select>
   </label>
@@ -26,20 +43,23 @@
     <select name="borrower_id" required>
       <option value="">--Select Borrower--</option>
       {{#each borrowers}}
-      <option value="{{this.person_id}}">{{this.name}} ({{this.mobile}})</option>
+      <option value="{{this.person_id}}"
+        {{#ifEquals ../formData.borrower_id this.person_id}}selected{{/ifEquals}}>
+        {{this.name}} ({{this.mobile}})
+      </option>
       {{/each}}
     </select>
   </label>
 
   <label>
     Borrow Date:
-    <input type="date" name="borrow_date" required />
+    <input type="date" name="borrow_date" value="{{formData.borrow_date}}" required />
   </label>
 
   <label>
     Due Date:
-    <input type="date" name="due_date" required />
+    <input type="date" name="due_date" value="{{formData.due_date}}" required />
   </label>
 
-  <button type="submit" class="btn">Save Transaction</button>
+  <button class="btn">Save Transaction</button>
 </form>

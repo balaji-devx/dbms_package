@@ -5,7 +5,7 @@ const hbs = require("hbs");
 
 const app = express();
 
-// Load MySQL connection (ensure config/db.js exists)
+// Load DB
 require("./config/db");
 
 // Body parser
@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
 
-// Optional: a small helper for formatting dates (yyyy-mm-dd)
+// Helpers
 hbs.registerHelper("formatDate", function (date) {
   if (!date) return "";
   const d = new Date(date);
@@ -28,12 +28,15 @@ hbs.registerHelper("formatDate", function (date) {
   return `${yyyy}-${mm}-${dd}`;
 });
 
+// Fix missing helper
+hbs.registerHelper("eq", (a, b) => a === b);
+
+// New helper for sticky selected values
+hbs.registerHelper("ifEquals", function (a, b, opts) {
+  return a == b ? opts.fn(this) : opts.inverse(this);
+});
+
 // Routes
 app.use("/", require("./routes/index"));
 
-hbs.registerHelper("eq", function(a, b) {
-  return a === b;
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(` Server running at http://localhost:${PORT}`));
+app.listen(3000, () => console.log("Server running at http://localhost:3000"));

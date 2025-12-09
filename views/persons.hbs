@@ -2,33 +2,45 @@
 
 <section class="form-section">
   <h3>Add Person</h3>
-  <form action="/persons/add" method="post" class="form">
+
+  <form action="/persons/add" method="post" class="form person-form">
+
+    {{#if errors}}
+    <div class="form-errors">
+      <ul>
+        {{#each errors}}
+        <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    {{/if}}
+
     <label>
       Name:
-      <input type="text" name="name" required />
+      <input type="text" name="name" value="{{formData.name}}" required />
     </label>
+
     <label>
       Mobile:
-      <input type="text" name="mobile" required />
+      <input type="text" name="mobile" value="{{formData.mobile}}" required />
     </label>
+
     <label>
       Type:
       <select name="type" required>
         <option value="">--Select--</option>
-        <option value="L">Lender</option>
-        <option value="B">Borrower</option>
+        <option value="L" {{#ifEquals formData.type "L"}}selected{{/ifEquals}}>Lender</option>
+        <option value="B" {{#ifEquals formData.type "B"}}selected{{/ifEquals}}>Borrower</option>
       </select>
     </label>
-    <button type="submit" class="btn">Add Person</button>
+
+    <button class="btn">Add Person</button>
   </form>
 </section>
 
 <section>
-  <div class="section-header">
-    <h3>Person List</h3>
-  </div>
+  <h3>Person List</h3>
 
-  {{#if persons.length}}
   <table>
     <thead>
       <tr>
@@ -38,6 +50,7 @@
         <th>Actions</th>
       </tr>
     </thead>
+
     <tbody>
       {{#each persons}}
       <tr>
@@ -46,15 +59,12 @@
         <td>{{this.typeLabel}}</td>
         <td>
           <a href="/persons/{{this.person_id}}/edit" class="btn small">Edit</a>
-          <form action="/persons/{{this.person_id}}/delete" method="post" style="display:inline" onsubmit="return confirm('Delete this person?');">
-            <button type="submit" class="btn small">Delete</button>
+          <form action="/persons/{{this.person_id}}/delete" method="post" style="display:inline;">
+            <button class="btn small">Delete</button>
           </form>
         </td>
       </tr>
       {{/each}}
     </tbody>
   </table>
-  {{else}}
-  <p>No persons added yet.</p>
-  {{/if}}
 </section>

@@ -1,22 +1,36 @@
 <h2>Edit Person</h2>
 
-<form action="/persons/{{person.person_id}}/edit" method="post" class="form">
+<form action="/persons/{{person.person_id}}/edit" method="post" class="form person-form">
+
+  {{#if errors}}
+  <div class="form-errors">
+    <ul>
+      {{#each errors}}
+      <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  {{/if}}
+
   <label>
     Name:
-    <input type="text" name="name" value="{{person.name}}" required />
+    <input type="text" name="name" value="{{formData.name}}{{^formData}}{{person.name}}{{/formData}}" required />
   </label>
+
   <label>
     Mobile:
-    <input type="text" name="mobile" value="{{person.mobile}}" required />
+    <input type="text" name="mobile" value="{{formData.mobile}}{{^formData}}{{person.mobile}}{{/formData}}" required />
   </label>
+
   <label>
     Type:
     <select name="type" required>
       <option value="">--Select--</option>
-      <option value="L" {{#if (eq person.type "L")}}selected{{/if}}>Lender</option>
-      <option value="B" {{#if (eq person.type "B")}}selected{{/if}}>Borrower</option>
+      <option value="L" {{#ifEquals formData.type "L"}}selected{{/ifEquals}} {{#ifEquals person.type "L"}}selected{{/ifEquals}}>Lender</option>
+      <option value="B" {{#ifEquals formData.type "B"}}selected{{/ifEquals}} {{#ifEquals person.type "B"}}selected{{/ifEquals}}>Borrower</option>
     </select>
   </label>
-  <button type="submit" class="btn">Save Changes</button>
+
+  <button class="btn">Save Changes</button>
   <a href="/persons" class="btn">Cancel</a>
 </form>
