@@ -7,7 +7,7 @@
 </head>
 <body>
   <header>
-    <h1>Borrowed Item Tracking System</h1>
+    <h1>Borrowed Item Tracker</h1>
     <nav>
       <a href="/">Home</a>
       <a href="/persons">Persons</a>
@@ -20,12 +20,16 @@
 
   <main>
     <div class="page-container">
-    {{{body}}}
+      {{{body}}}
     </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 DBMS Package</p>
+    <p>&copy; <span id="year">{{year}}</span> Borrowed Item Tracker</p>
   </footer>
+
+  <script>
+    document.getElementById('year').innerText = new Date().getFullYear();
+  </script>
 </body>
 </html>

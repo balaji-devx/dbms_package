@@ -16,7 +16,10 @@
 </section>
 
 <section>
-  <h3>Item List</h3>
+  <div class="section-header">
+    <h3>Item List</h3>
+  </div>
+
   {{#if items.length}}
   <table>
     <thead>
@@ -32,13 +35,8 @@
         <td>{{this.item_name}}</td>
         <td>{{this.category}}</td>
         <td>
-          <a href="/items/{{this._id}}/edit" class="btn small">Edit</a>
-          <form
-            action="/items/{{this._id}}/delete"
-            method="post"
-            style="display:inline"
-            onsubmit="return confirm('Delete this item?');"
-          >
+          <a href="/items/{{this.item_id}}/edit" class="btn small">Edit</a>
+          <form action="/items/{{this.item_id}}/delete" method="post" style="display:inline" onsubmit="return confirm('Delete this item?');">
             <button type="submit" class="btn small">Delete</button>
           </form>
         </td>

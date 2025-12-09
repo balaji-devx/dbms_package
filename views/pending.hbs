@@ -15,11 +15,11 @@
   <tbody>
     {{#each txns}}
     <tr class="{{#if this.isOverdue}}overdue{{/if}}">
-      <td>{{this.item_id.item_name}}</td>
-      <td>{{this.lender_id.name}}</td>
-      <td>{{this.borrower_id.name}}</td>
-      <td>{{this.borrow_date}}</td>
-      <td>{{this.due_date}}</td>
+      <td>{{this.item_name}}</td>
+      <td>{{this.lenderName}}</td>
+      <td>{{this.borrowerName}}</td>
+      <td>{{formatDate this.borrow_date}}</td>
+      <td>{{formatDate this.due_date}}</td>
       <td>
         {{#if this.isOverdue}}
           Overdue

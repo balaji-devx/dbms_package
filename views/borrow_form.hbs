@@ -6,7 +6,7 @@
     <select name="item_id" required>
       <option value="">--Select Item--</option>
       {{#each items}}
-      <option value="{{this._id}}">{{this.item_name}} ({{this.category}})</option>
+      <option value="{{this.item_id}}">{{this.item_name}} ({{this.category}})</option>
       {{/each}}
     </select>
   </label>
@@ -16,7 +16,7 @@
     <select name="lender_id" required>
       <option value="">--Select Lender--</option>
       {{#each lenders}}
-      <option value="{{this._id}}">{{this.name}} ({{this.mobile}})</option>
+      <option value="{{this.person_id}}">{{this.name}} ({{this.mobile}})</option>
       {{/each}}
     </select>
   </label>
@@ -26,7 +26,7 @@
     <select name="borrower_id" required>
       <option value="">--Select Borrower--</option>
       {{#each borrowers}}
-      <option value="{{this._id}}">{{this.name}} ({{this.mobile}})</option>
+      <option value="{{this.person_id}}">{{this.name}} ({{this.mobile}})</option>
       {{/each}}
     </select>
   </label>

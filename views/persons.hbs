@@ -24,7 +24,10 @@
 </section>
 
 <section>
-  <h3>Person List</h3>
+  <div class="section-header">
+    <h3>Person List</h3>
+  </div>
+
   {{#if persons.length}}
   <table>
     <thead>
@@ -42,13 +45,8 @@
         <td>{{this.mobile}}</td>
         <td>{{this.typeLabel}}</td>
         <td>
-          <a href="/persons/{{this._id}}/edit" class="btn small">Edit</a>
-          <form
-            action="/persons/{{this._id}}/delete"
-            method="post"
-            style="display:inline"
-            onsubmit="return confirm('Delete this person?');"
-          >
+          <a href="/persons/{{this.person_id}}/edit" class="btn small">Edit</a>
+          <form action="/persons/{{this.person_id}}/delete" method="post" style="display:inline" onsubmit="return confirm('Delete this person?');">
             <button type="submit" class="btn small">Delete</button>
           </form>
         </td>

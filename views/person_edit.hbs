@@ -1,6 +1,6 @@
 <h2>Edit Person</h2>
 
-<form action="/persons/{{person._id}}/edit" method="post" class="form">
+<form action="/persons/{{person.person_id}}/edit" method="post" class="form">
   <label>
     Name:
     <input type="text" name="name" value="{{person.name}}" required />
@@ -13,8 +13,8 @@
     Type:
     <select name="type" required>
       <option value="">--Select--</option>
-      <option value="L" {{#if person.isLender}}selected{{/if}}>Lender</option>
-      <option value="B" {{#if person.isBorrower}}selected{{/if}}>Borrower</option>
+      <option value="L" {{#if (eq person.type "L")}}selected{{/if}}>Lender</option>
+      <option value="B" {{#if (eq person.type "B")}}selected{{/if}}>Borrower</option>
     </select>
   </label>
   <button type="submit" class="btn">Save Changes</button>
